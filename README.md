@@ -54,13 +54,13 @@ docker build -t buzzvel-frontend-challenge-felipe-monteiro .
 # Run the container in detached mode
 docker run -d \
   --name buzzvel-frontend-challenge-felipe-monteiro \
-  -p 5173:5173 \
+  -p 4173:4173 \
   buzzvel-frontend-challenge-felipe-monteiro
 ```
 
 - `-d`: detached mode
 - `--name`: friendly container name
-- `-p 5173:5173`: maps port 5173 in the container to port 5173 on the host
+- `-p 4173:4173`: maps port 4173 in the container to port 4173 on the host
 
 Real-time logs:
 
@@ -85,10 +85,10 @@ Orchestrate multiple services via `docker compose`.
 
 ```bash
 # Start all services
-docker compose -f compose.yml up -d
+docker compose up -d
 
 # Stop and remove containers and network
-docker compose -f compose.yml down
+docker compose down
 ```
 
 ---
