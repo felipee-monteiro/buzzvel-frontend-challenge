@@ -77,7 +77,7 @@ docker rm buzzvel-frontend-challenge-felipe-monteiro
 
 ---
 
-## 3. Running with Docker Compose (compose.yml)
+## 3. Running with Docker Compose
 
 Orchestrate multiple services via `docker compose`.
 
