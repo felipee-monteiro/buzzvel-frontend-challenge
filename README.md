@@ -4,7 +4,7 @@ This repository contains the source-code of the test and demonstrates how to run
 
 1. Using **nvm** (Node Version Manager)
 2. Using **docker run**
-3. Using **Docker Compose** (file `compose.yml`)
+3. Using **Docker Compose** (file `docker-compose.yml`)
 
 ---
 
