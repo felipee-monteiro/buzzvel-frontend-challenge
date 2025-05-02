@@ -1,6 +1,6 @@
 ## Description
 
-This repository contains an example Node.js application and demonstrates how to run it in three different ways:
+This repository contains the source-code of the test and demonstrates how to run it in three different ways:
 
 1. Using **nvm** (Node Version Manager)
 2. Using **docker run**
