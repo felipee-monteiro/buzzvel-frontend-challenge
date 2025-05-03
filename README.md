@@ -26,16 +26,27 @@ For local development, use **nvm** to manage Node.js versions:
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 # or
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+```
 
+```bash
 # Load nvm in your terminal
 source ~/.nvm/nvm.sh
-
+```
+```bash 
 # Install and use the Node.js version specified in .nvmrc
 nvm install
-nvm use
+```
 
+```bash
+nvm use
+```
+
+```bash
 # Install dependencies and start the application
 npm install
+```
+
+```bash
 npm run dev
 ```
 
