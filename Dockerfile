@@ -2,8 +2,6 @@ FROM node:22.15.0
 
 ENV NODE_ENV=production
 ENV NPM_CONFIG_LOGLEVEL=info
-ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
-ENV PATH=$PATH:/home/node/.npm-global/bin 
 
 WORKDIR /usr/src/app
 
