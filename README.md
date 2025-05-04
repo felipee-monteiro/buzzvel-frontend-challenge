@@ -68,20 +68,19 @@ The application will be available at http://localhost:4173.
 
 Quick and without extra files:
 
-```bash
-# Build the Docker image
-docker build -t buzzvel-frontend-challenge-felipe-monteiro .
+#### Build the Docker image
 
-# Run the container in detached mode
+```bash
+docker build -t buzzvel-frontend-challenge-felipe-monteiro .
+```
+#### Run the container in detached mode
+
+```bash
 docker run -d \
   --name buzzvel-frontend-challenge-felipe-monteiro \
   -p 4173:4173 \
   buzzvel-frontend-challenge-felipe-monteiro
 ```
-
-- `-d`: detached mode
-- `--name`: friendly container name
-- `-p 4173:4173`: maps port 4173 in the container to port 4173 on the host
 
 Real-time logs:
 
@@ -89,10 +88,14 @@ Real-time logs:
 docker logs -f buzzvel-frontend-challenge-felipe-monteiro
 ```
 
-Stop and remove:
+#### Stop:
 
 ```bash
 docker stop buzzvel-frontend-challenge-felipe-monteiro
+```
+#### Remove:
+
+```bash
 docker rm buzzvel-frontend-challenge-felipe-monteiro
 ```
 
@@ -104,11 +107,15 @@ Orchestrate multiple services via `docker compose`.
 
 ### 3.2 Basic commands
 
-```bash
-# Start all services
-docker compose up -d
+#### Start all services
 
-# Stop and remove containers and network
+```bash
+docker compose up -d
+```
+
+#### Stop and remove containers and network
+
+```bash
 docker compose down
 ```
 
