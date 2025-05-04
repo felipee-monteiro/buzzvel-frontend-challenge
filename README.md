@@ -12,8 +12,7 @@ This repository contains the source-code of the test and demonstrates how to run
 
 - Git
 - Node.js (or **nvm** installed)
-- Docker
-- Docker Compose (CLI integrated with Docker 2.x or as a separate plugin)
+- Docker/Docker Compose  (If use it)
 
 ---
 
