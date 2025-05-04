@@ -35,27 +35,27 @@ wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 source ~/.nvm/nvm.sh
 ```
 
-#### Install the Node.js version specified in .nvmrc
+#### Install the Node.js version specified in .nvmrc:
 
 ```bash
 nvm install
 ```
-#### Use the Node.js version specified in .nvmrc
+#### Use the Node.js version specified in .nvmrc:
 
 ```bash
 nvm use
 ```
-#### Install dependencies
+#### Install dependencies:
 
 ```bash
 npm install
 ```
-#### Build the appilcation
+#### Build the appilcation:
 
 ```bash
 npm run build
 ```
-#### Start the application
+#### Start the application:
 
 ```bash
 npm run preview
