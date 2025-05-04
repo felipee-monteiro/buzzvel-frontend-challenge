@@ -1,4 +1,4 @@
-****## Description
+## Description
 
 This repository contains the source-code of the test and demonstrates how to run it in three different ways:
 
@@ -32,7 +32,8 @@ wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 # Load nvm in your terminal
 source ~/.nvm/nvm.sh
 ```
-```bash 
+
+```bash
 # Install the Node.js version specified in .nvmrc
 nvm install
 ```
@@ -43,17 +44,17 @@ nvm use
 ```
 
 ```bash
-# Install dependencies 
+# Install dependencies
 npm install
 ```
 
 ```bash
-# Build the appilcation 
+# Build the appilcation
 npm run build
 ```
 
 ```bash
-# Start the application 
+# Start the application
 npm run preview
 ```
 
