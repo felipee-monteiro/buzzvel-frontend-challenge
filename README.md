@@ -21,40 +21,43 @@ This repository contains the source-code of the test and demonstrates how to run
 
 For local development, use **nvm** to manage Node.js versions:
 
+#### Install or update nvm
+
 ```bash
-# Install or update nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 # or
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 ```
 
+### Load nvm in your terminal
+
 ```bash
-# Load nvm in your terminal
 source ~/.nvm/nvm.sh
 ```
 
+#### Install the Node.js version specified in .nvmrc
+
 ```bash
-# Install the Node.js version specified in .nvmrc
 nvm install
 ```
+#### Use the Node.js version specified in .nvmrc
 
 ```bash
-# Use the Node.js version specified in .nvmrc
 nvm use
 ```
+#### Install dependencies
 
 ```bash
-# Install dependencies
 npm install
 ```
+#### Build the appilcation
 
 ```bash
-# Build the appilcation
 npm run build
 ```
+#### Start the application
 
 ```bash
-# Start the application
 npm run preview
 ```
 
