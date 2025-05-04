@@ -61,7 +61,7 @@ npm run build
 npm run preview
 ```
 
-The application will be available at []http://localhost:4173.
+The application will be available at http://localhost:4173.
 
 ---
 
