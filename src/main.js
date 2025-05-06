@@ -1,8 +1,22 @@
 //# allFunctionsCalledOnLoad
 import EmblaCarousel from "embla-carousel";
+import { animate } from "motion";
 
 const emblaNode = document.querySelector(".embla__cards");
 const viewportNode = emblaNode.querySelector(".embla__viewport");
+const text = document.querySelectorAll(".animate");
+
+animate(
+	text,
+	{
+		opacity: [0, 1],
+		y: [20, 0],
+	},
+	{
+		duration: 1.5,
+		easing: "ease-out",
+	},
+);
 
 EmblaCarousel(viewportNode, {
 	containScroll: true,
