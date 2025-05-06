@@ -10,6 +10,13 @@
 			rel="stylesheet"
 		/>
 		<link href="/src/style.css" rel="stylesheet" />
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.3.0/alpine-ie11.min.js"
+			defer
+			integrity="sha512-Atu8sttM7mNNMon28+GHxLdz4Xo2APm1WVHwiLW9gW4bmHpHc/E2IbXrj98SmefTmbqbUTOztKl5PDPiu0LD/A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<style>
 			.companie {
@@ -18,13 +25,110 @@
 		</style>
 		<title>Vite App</title>
 	</head>
-	<body>
-		<main>
+	<body class="w-full">
+		<main class="w-full">
 			<div class="w-full px-4 md:px-24">
-				<nav class="md:flex py-8 justify-between items-center w-full">
-					<div class="flex gap-16">
+				<nav
+					x-data="{ isOpen: false }"
+					class="md:flex py-8 justify-between items-center w-full"
+				>
+					<div class="flex justify-between gap-16">
 						<div>
 							<img src="/brand.svg" alt="" srcset="" />
+						</div>
+
+						<div class="self-center md:hidden">
+							<button @click="isOpen = !isOpen" type="button">
+								<img src="/menu-outline.svg" alt="" srcset="" />
+							</button>
+						</div>
+
+						<div
+							x-show="isOpen"
+							x-transition:enter="transition ease-out duration-200"
+							x-transition:enter-start="opacity-0"
+							x-transition:enter-end="opacity-100"
+							x-transition:leave="transition ease-in duration-150"
+							x-transition:leave-start="opacity-100"
+							x-transition:leave-end="opacity-0"
+							class="fixed inset-0 z-50 md:hidden"
+							style="display: none"
+						>
+							<!-- Menu -->
+							<div
+								class="relative bg-white w-full h-full shadow-xl ml-auto transform transition-all"
+								:class="{ 'translate-x-0': isOpen, 'translate-x-full': !isOpen }"
+							>
+								<!-- Menu Header -->
+								<div class="p-4">
+									<button
+										@click="isOpen = false"
+										class="ml-auto flex items-center justify-center h-8 w-8 rounded-full hover:bg-gray-100 transition-colors"
+									>
+										<span class="sr-only">Close menu</span>
+										<svg
+											class="h-5 w-5 text-gray-600"
+											fill="none"
+											stroke="currentColor"
+											viewBox="0 0 24 24"
+										>
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												stroke-width="2"
+												d="M6 18L18 6M6 6l12 12"
+											/>
+										</svg>
+									</button>
+								</div>
+
+								<!-- Menu Itens -->
+								<nav class="p-4 space-y-2">
+									<div class="flex flex-col gap-5">
+										<a
+											href="#"
+											class="flex items-center p-3 text-gray-700 hover:bg-indigo-50 rounded-lg group transition-colors"
+										>
+											Products
+										</a>
+										<a
+											href="#"
+											class="flex items-center p-3 text-gray-700 hover:bg-indigo-50 rounded-lg group transition-colors"
+										>
+											Solutions
+										</a>
+										<a
+											href="#"
+											class="flex items-center p-3 text-gray-700 hover:bg-indigo-50 rounded-lg group transition-colors"
+										>
+											Pricing
+										</a>
+									</div>
+									<div
+										class="flex items-center p-3 text-gray-700 hover:bg-indigo-50 rounded-lg group transition-colors"
+									>
+										<a href="#" class="text-link-primary">
+											Resources
+										</a>
+									</div>
+
+									<!-- Nav Buttons -->
+									<div class="absolute bottom-4 px-4">
+										<a
+											href="#"
+											class="text-link-primary font-semibold"
+										>
+											Log In
+										</a>
+										<a
+											href="#"
+											class="bg-white text-gray-900 border-4 border-gray-900 font-semibold px-6 py-2 rounded-lg transition-all focus:ring-2 focus:ring-gray-700"
+										>
+											Sign Up Now
+										</a>
+									</div>
+								</nav>
+							</div>
 						</div>
 
 						<div class="hidden md:flex items-center gap-16 font-semibold">
@@ -58,7 +162,7 @@
 						</a>
 						<a
 							href="#"
-							class="bg-white text-gray-900 border-2 border-gray-900 font-semibold px-6 py-2 rounded-lg transition-all focus:ring-2 focus:ring-gray-700"
+							class="bg-white text-gray-900 border-4 border-gray-900 font-semibold px-6 py-2 rounded-lg transition-all focus:ring-2 focus:ring-gray-700"
 						>
 							Sign Up Now
 						</a>
@@ -75,13 +179,22 @@
 							<h1
 								class="text-[2.5rem] font-extrabold leading-12 md:text-7xl md:leading-20"
 							>
-								Teach students <br />
+								<div class="relative inline-block">
+									<span
+										class="relative z-10 font-bold text-neutral-900"
+										>Teach</span
+									>
+									<span
+										class="absolute left-0 bottom-1 h-2 w-full bg-orange-400 -z-0 rounded-sm transform -skew-x-12"
+									></span>
+								</div>
+								students <br />
 								worldwide
 							</h1>
 						</div>
 
 						<!-- Description -->
-						<div class="text-base md:text-2xl font-normal">
+						<div class="md:text-2xl font-normal">
 							<p class="md:leading-10">
 								Amet nunc diam orci duis ut sit diam arcu, nec.
 								<br />
@@ -91,7 +204,7 @@
 						</div>
 
 						<!-- Buttons -->
-						<div class="flex gap-4 items-center text-base md:text-xl">
+						<div class="flex gap-4 items-center md:text-xl">
 							<a
 								href="#"
 								class="bg-orange-600 text-white font-bold rounded-lg transition-all focus:ring-2 focus:ring-orange-400 px-8 py-4 md:px-12 md:py-4"
@@ -172,7 +285,7 @@
 				</section>
 
 				<section
-					class="flex flex-col md:flex-row w-full items-center my-30 bg-white"
+					class="flex w-full flex-col md:flex-row items-center my-30 bg-white"
 				>
 					<!-- Center Section -->
 					<div class="flex w-full flex-col gap-8 my-8">
@@ -180,7 +293,7 @@
 							<h1
 								class="text-base font-extrabold md:text-7xl md:leading-20"
 							>
-								An all-in-one app that makes it easier
+								An app that makes it easier
 							</h1>
 						</div>
 
@@ -211,7 +324,7 @@
 							<!-- Buttons -->
 							<a
 								href="#"
-								class="bg-white flex items-center gap-5 text-blue-600 font-medium text-base md:text-2xl py-4 rounded-lg transition-all focus:ring-2 focus:ring-blue-400"
+								class="bg-white flex items-center gap-5 text-blue-600 font-medium md:text-2xl py-4 rounded-lg transition-all focus:ring-2 focus:ring-blue-400"
 							>
 								Find more about the app
 
@@ -232,7 +345,7 @@
 						</div>
 					</div>
 
-					<div>
+					<div class="w-full md:w-auto">
 						<div class="flex justify-end">
 							<img
 								src="/Blob.svg"
@@ -241,10 +354,10 @@
 								srcset=""
 							/>
 						</div>
-						<div class="relative">
+						<div class="relative w-full">
 							<!-- Browser mockup -->
 
-							<div class="md:max-w-7xl">
+							<div class="md:max-w-7xl rounded-b-xl">
 								<div
 									class="w-full h-11 rounded-t-lg bg-white flex justify-start items-center space-x-1.5 px-3"
 								>
@@ -256,115 +369,135 @@
 										class="w-3 h-3 rounded-full bg-green-400"
 									></span>
 								</div>
-								<div class="bg-white border-t-0 w-full md:h-96">
-									<div>
-										<img
-											src="/Desktop.png"
-											class="w-full"
-											alt="Main Section"
-											srcset=""
-										/>
-									</div>
+
+								<div
+									class="bg-white rounded-b-xl w-full border-4 border-white"
+								>
+									<img
+										src="/Desktop.png"
+										class="w-full rounded-b-xl"
+										alt="Main Section"
+										srcset=""
+									/>
 								</div>
 							</div>
 
-							<!-- Cards -->
-							<div class="flex w-full gap-5">
-								<!-- Card -->
-								<figure
-									class="w-full flex flex-col gap-3 p-5 pb-4 bg-white rounded-2xl shadow-xl"
-								>
-									<blockquote>
-										<span
-											class="bg-purple-100 text-purple-800 text-md font-normal px-2.5 py-1 rounded-sm"
-											>Featured</span
-										>
-									</blockquote>
-									<figcaption class="flex gap-3 flex-col">
-										<div class="space-y-0.5 text-xl font-medium">
-											<p>The map of mathematics</p>
-										</div>
-										<div>
-											<p
-												class="text-sm self-start font-normal text-gray-600 leading-6"
+							<div
+								class="embla__cards md:pt-0 pt-4 px-5 overflow-x-auto"
+							>
+								<div class="embla__viewport">
+									<!-- Cards -->
+
+									<div class="embla__container flex w-[40rem] gap-5">
+										<div class="embla__slide">
+											<figure
+												class="w-full flex flex-col gap-3 p-5 pb-4 bg-white rounded-2xl shadow-xl"
 											>
-												Egestas elit dui <br />
-												scelerisque ut eu purus aliquam vitae
-												habitasse.
-											</p>
+												<blockquote>
+													<span
+														class="bg-purple-100 text-purple-800 text-md font-normal px-2.5 py-1 rounded-sm"
+														>Featured</span
+													>
+												</blockquote>
+												<figcaption class="flex gap-3 flex-col">
+													<div
+														class="space-y-0.5 text-xl font-medium"
+													>
+														<p>The map of mathematics</p>
+													</div>
+													<div>
+														<p
+															class="text-sm self-start font-normal text-gray-600 leading-6"
+														>
+															Egestas elit dui <br />
+															scelerisque ut eu purus aliquam
+															vitae habitasse.
+														</p>
+													</div>
+													<div>
+														<a
+															href="#"
+															class="w-full inline-block text-center text-[0.75rem] tracking-wider bg-white text-blue-600 border-2 border-blue-600 font-semibold px-6 py-2 rounded-lg transition-all focus:ring-2 focus:ring-blue-700"
+															>Take Lesson</a
+														>
+													</div>
+												</figcaption>
+											</figure>
 										</div>
-										<div>
-											<a
-												href="#"
-												class="w-full inline-block text-center text-[0.75rem] tracking-wider bg-white text-blue-600 border-2 border-blue-600 font-semibold px-6 py-2 rounded-lg transition-all focus:ring-2 focus:ring-blue-700"
-												>Take Lesson</a
+
+										<div class="embla__slide">
+											<figure
+												class="w-full flex flex-col gap-3 p-5 pb-4 bg-white rounded-2xl shadow-xl"
 											>
+												<blockquote>
+													<span
+														class="bg-blue-100 text-blue-800 text-md font-normal px-2.5 py-1 rounded-sm"
+														>Popular</span
+													>
+												</blockquote>
+												<figcaption class="flex gap-3 flex-col">
+													<div
+														class="space-y-0.5 text-xl font-medium"
+													>
+														<p>Design for how people think</p>
+													</div>
+													<div>
+														<p
+															class="text-sm self-start font-normal text-gray-600 leading-6"
+														>
+															Aliquam ut euismod <br />
+															condimentum elementum ultricies
+															volutpat sit non.
+														</p>
+													</div>
+													<div>
+														<a
+															href="#"
+															class="w-full inline-block text-center text-[0.75rem] tracking-wider bg-white text-blue-600 border-2 border-blue-600 font-semibold px-6 py-2 rounded-lg transition-all focus:ring-2 focus:ring-blue-700"
+															>Take Lesson</a
+														>
+													</div>
+												</figcaption>
+											</figure>
 										</div>
-									</figcaption>
-								</figure>
-								<!-- Card -->
-								<figure
-									class="w-full flex flex-col gap-3 p-5 pb-4 bg-white rounded-2xl shadow-xl"
-								>
-									<blockquote>
-										<span
-											class="bg-blue-100 text-blue-800 text-md font-normal px-2.5 py-1 rounded-sm"
-											>Popular</span
-										>
-									</blockquote>
-									<figcaption class="flex gap-3 flex-col">
-										<div class="space-y-0.5 text-xl font-medium">
-											<p>Design for how people think</p>
-										</div>
-										<div>
-											<p
-												class="text-sm self-start font-normal text-gray-600 leading-6"
+
+										<div class="embla__slide">
+											<figure
+												class="w-full flex flex-col gap-3 p-5 pb-4 bg-white rounded-2xl shadow-xl"
 											>
-												Aliquam ut euismod <br />
-												condimentum elementum ultricies volutpat sit
-												non.
-											</p>
+												<blockquote>
+													<span
+														class="bg-green-100 text-green-800 text-md font-normal px-2.5 py-1 rounded-sm"
+														>New</span
+													>
+												</blockquote>
+												<figcaption class="flex gap-3 flex-col">
+													<div
+														class="space-y-0.5 text-xl font-medium"
+													>
+														<p>International & commercial law</p>
+													</div>
+													<div>
+														<p
+															class="text-sm self-start font-normal text-gray-600 leading-6"
+														>
+															Molestie integer eu arcu, mauris
+															bibendum <br />
+															rhoncus imperdiet dui.
+														</p>
+													</div>
+													<div>
+														<a
+															href="#"
+															class="w-full inline-block text-center text-[0.75rem] tracking-wider bg-white text-blue-600 border-2 border-blue-600 font-semibold px-6 py-2 rounded-lg transition-all focus:ring-2 focus:ring-blue-700"
+															>Take Lesson</a
+														>
+													</div>
+												</figcaption>
+											</figure>
 										</div>
-										<div>
-											<a
-												href="#"
-												class="w-full inline-block text-center text-[0.75rem] tracking-wider bg-white text-blue-600 border-2 border-blue-600 font-semibold px-6 py-2 rounded-lg transition-all focus:ring-2 focus:ring-blue-700"
-												>Take Lesson</a
-											>
-										</div>
-									</figcaption>
-								</figure>
-								<!-- Card -->
-								<figure
-									class="w-full flex flex-col gap-3 p-5 pb-4 bg-white rounded-2xl shadow-xl"
-								>
-									<blockquote>
-										<span
-											class="bg-green-100 text-green-800 text-md font-normal px-2.5 py-1 rounded-sm"
-											>New</span
-										>
-									</blockquote>
-									<figcaption class="flex gap-3 flex-col">
-										<div class="space-y-0.5 text-xl font-medium">
-											<p>International & commercial law</p>
-										</div>
-										<div>
-											<p
-												class="text-sm self-start font-normal text-gray-600 leading-6"
-											>
-												Molestie integer eu arcu, <br />
-												mauris bibendum rhoncus imperdiet dui.
-											</p>
-										</div>
-										<div>
-											<a
-												href="#"
-												class="w-full inline-block text-center text-[0.75rem] tracking-wider bg-white text-blue-600 border-2 border-blue-600 font-semibold px-6 py-2 rounded-lg transition-all focus:ring-2 focus:ring-blue-700"
-												>Take Lesson</a
-											>
-										</div>
-									</figcaption>
-								</figure>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -430,7 +563,7 @@
 				</section>
 			</div>
 
-			<section class="mt-32 mb-30 bg-[#0F172A] p-24 w-full">
+			<section class="mt-32 md:mb-30 mb-10 bg-[#0F172A] p-24 w-full">
 				<div
 					class="grid grid-cols-1 gap-16 md:grid-cols-3 md:gap-0 text-yellow-400"
 				>
@@ -522,315 +655,564 @@
 				</div>
 			</section>
 
-			<div class="px-24">
+			<div class="md:px-24 px-4">
 				<!-- Cards section -->
-				<section class="w-full flex flex-col gap-24 mb-32 bg-white">
-					<div class="flex justify-between">
+				<section
+					class="w-full flex flex-col gap-4 md:gap-24 md:mb-32 bg-white"
+				>
+					<div class="w-full flex justify-between">
 						<div>
-							<h1 class="font-black leading-20" style="font-size: 56px">
+							<h1
+								class="font-black md:leading-20 text-2xl md:text-[56px]"
+							>
 								What everyone says
 							</h1>
 						</div>
 
-						<div class="flex gap-4">
-							<!-- Circle arrow left -->
-							<svg
-								width="54"
-								height="55"
-								viewBox="0 0 54 55"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<g filter="url(#filter0_dd_1_11908)">
-									<rect
-										x="4"
-										y="3.5"
-										width="46"
-										height="46"
-										rx="23"
-										stroke="#EA580C"
-										stroke-width="2"
-									/>
-									<path
-										d="M33.5 26.5H21H33.5ZM21 26.5L27 20.5L21 26.5ZM21 26.5L27 32.5L21 26.5Z"
-										fill="#EA580C"
-									/>
-									<path
-										d="M21 26.5L27 32.5M33.5 26.5H21H33.5ZM21 26.5L27 20.5L21 26.5Z"
-										stroke="#EA580C"
-										stroke-width="1.5"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-									/>
-								</g>
-								<defs>
-									<filter
-										id="filter0_dd_1_11908"
-										x="0"
-										y="0.5"
-										width="54"
-										height="54"
-										filterUnits="userSpaceOnUse"
-										color-interpolation-filters="sRGB"
-									>
-										<feFlood
-											flood-opacity="0"
-											result="BackgroundImageFix"
-										/>
-										<feColorMatrix
-											in="SourceAlpha"
-											type="matrix"
-											values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-											result="hardAlpha"
-										/>
-										<feOffset />
-										<feGaussianBlur stdDeviation="1" />
-										<feColorMatrix
-											type="matrix"
-											values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0"
-										/>
-										<feBlend
-											mode="normal"
-											in2="BackgroundImageFix"
-											result="effect1_dropShadow_1_11908"
-										/>
-										<feColorMatrix
-											in="SourceAlpha"
-											type="matrix"
-											values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-											result="hardAlpha"
-										/>
-										<feOffset dy="1" />
-										<feGaussianBlur stdDeviation="1.5" />
-										<feColorMatrix
-											type="matrix"
-											values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"
-										/>
-										<feBlend
-											mode="normal"
-											in2="effect1_dropShadow_1_11908"
-											result="effect2_dropShadow_1_11908"
-										/>
-										<feBlend
-											mode="normal"
-											in="SourceGraphic"
-											in2="effect2_dropShadow_1_11908"
-											result="shape"
-										/>
-									</filter>
-								</defs>
-							</svg>
-
-							<!-- Circle arrow right -->
-							<svg
-								width="54"
-								height="55"
-								viewBox="0 0 54 55"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<g filter="url(#filter0_dd_1_11909)">
-									<rect
-										x="4"
-										y="3.5"
-										width="46"
-										height="46"
-										rx="23"
-										stroke="#EA580C"
-										stroke-width="2"
-									/>
-									<path
-										d="M21 26.5H33.5H21ZM33.5 26.5L27.5 20.5L33.5 26.5ZM33.5 26.5L27.5 32.5L33.5 26.5Z"
-										fill="#EA580C"
-									/>
-									<path
-										d="M33.5 26.5L27.5 32.5M21 26.5H33.5H21ZM33.5 26.5L27.5 20.5L33.5 26.5Z"
-										stroke="#EA580C"
-										stroke-width="1.5"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-									/>
-								</g>
-								<defs>
-									<filter
-										id="filter0_dd_1_11909"
-										x="0"
-										y="0.5"
-										width="54"
-										height="54"
-										filterUnits="userSpaceOnUse"
-										color-interpolation-filters="sRGB"
-									>
-										<feFlood
-											flood-opacity="0"
-											result="BackgroundImageFix"
-										/>
-										<feColorMatrix
-											in="SourceAlpha"
-											type="matrix"
-											values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-											result="hardAlpha"
-										/>
-										<feOffset />
-										<feGaussianBlur stdDeviation="1" />
-										<feColorMatrix
-											type="matrix"
-											values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0"
-										/>
-										<feBlend
-											mode="normal"
-											in2="BackgroundImageFix"
-											result="effect1_dropShadow_1_11909"
-										/>
-										<feColorMatrix
-											in="SourceAlpha"
-											type="matrix"
-											values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-											result="hardAlpha"
-										/>
-										<feOffset dy="1" />
-										<feGaussianBlur stdDeviation="1.5" />
-										<feColorMatrix
-											type="matrix"
-											values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"
-										/>
-										<feBlend
-											mode="normal"
-											in2="effect1_dropShadow_1_11909"
-											result="effect2_dropShadow_1_11909"
-										/>
-										<feBlend
-											mode="normal"
-											in="SourceGraphic"
-											in2="effect2_dropShadow_1_11909"
-											result="shape"
-										/>
-									</filter>
-								</defs>
-							</svg>
+						<div class="hidden md:flex gap-4">
+							<div class="embla__controls">
+								<div class="embla__buttons">
+									<button class="embla__button--prev">
+										<svg
+											width="54"
+											height="55"
+											viewBox="0 0 54 55"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+										>
+											<g filter="url(#filter0_dd_1_11908)">
+												<rect
+													x="4"
+													y="3.5"
+													width="46"
+													height="46"
+													rx="23"
+													stroke="#EA580C"
+													stroke-width="2"
+												/>
+												<path
+													d="M33.5 26.5H21H33.5ZM21 26.5L27 20.5L21 26.5ZM21 26.5L27 32.5L21 26.5Z"
+													fill="#EA580C"
+												/>
+												<path
+													d="M21 26.5L27 32.5M33.5 26.5H21H33.5ZM21 26.5L27 20.5L21 26.5Z"
+													stroke="#EA580C"
+													stroke-width="1.5"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+												/>
+											</g>
+											<defs>
+												<filter
+													id="filter0_dd_1_11908"
+													x="0"
+													y="0.5"
+													width="54"
+													height="54"
+													filterUnits="userSpaceOnUse"
+													color-interpolation-filters="sRGB"
+												>
+													<feFlood
+														flood-opacity="0"
+														result="BackgroundImageFix"
+													/>
+													<feColorMatrix
+														in="SourceAlpha"
+														type="matrix"
+														values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+														result="hardAlpha"
+													/>
+													<feOffset />
+													<feGaussianBlur stdDeviation="1" />
+													<feColorMatrix
+														type="matrix"
+														values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0"
+													/>
+													<feBlend
+														mode="normal"
+														in2="BackgroundImageFix"
+														result="effect1_dropShadow_1_11908"
+													/>
+													<feColorMatrix
+														in="SourceAlpha"
+														type="matrix"
+														values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+														result="hardAlpha"
+													/>
+													<feOffset dy="1" />
+													<feGaussianBlur stdDeviation="1.5" />
+													<feColorMatrix
+														type="matrix"
+														values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"
+													/>
+													<feBlend
+														mode="normal"
+														in2="effect1_dropShadow_1_11908"
+														result="effect2_dropShadow_1_11908"
+													/>
+													<feBlend
+														mode="normal"
+														in="SourceGraphic"
+														in2="effect2_dropShadow_1_11908"
+														result="shape"
+													/>
+												</filter>
+											</defs>
+										</svg>
+									</button>
+									<button class="embla__button--next">
+										<svg
+											width="54"
+											height="55"
+											viewBox="0 0 54 55"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+										>
+											<g filter="url(#filter0_dd_1_11909)">
+												<rect
+													x="4"
+													y="3.5"
+													width="46"
+													height="46"
+													rx="23"
+													stroke="#EA580C"
+													stroke-width="2"
+												/>
+												<path
+													d="M21 26.5H33.5H21ZM33.5 26.5L27.5 20.5L33.5 26.5ZM33.5 26.5L27.5 32.5L33.5 26.5Z"
+													fill="#EA580C"
+												/>
+												<path
+													d="M33.5 26.5L27.5 32.5M21 26.5H33.5H21ZM33.5 26.5L27.5 20.5L33.5 26.5Z"
+													stroke="#EA580C"
+													stroke-width="1.5"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+												/>
+											</g>
+											<defs>
+												<filter
+													id="filter0_dd_1_11909"
+													x="0"
+													y="0.5"
+													width="54"
+													height="54"
+													filterUnits="userSpaceOnUse"
+													color-interpolation-filters="sRGB"
+												>
+													<feFlood
+														flood-opacity="0"
+														result="BackgroundImageFix"
+													/>
+													<feColorMatrix
+														in="SourceAlpha"
+														type="matrix"
+														values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+														result="hardAlpha"
+													/>
+													<feOffset />
+													<feGaussianBlur stdDeviation="1" />
+													<feColorMatrix
+														type="matrix"
+														values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.07 0"
+													/>
+													<feBlend
+														mode="normal"
+														in2="BackgroundImageFix"
+														result="effect1_dropShadow_1_11909"
+													/>
+													<feColorMatrix
+														in="SourceAlpha"
+														type="matrix"
+														values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+														result="hardAlpha"
+													/>
+													<feOffset dy="1" />
+													<feGaussianBlur stdDeviation="1.5" />
+													<feColorMatrix
+														type="matrix"
+														values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"
+													/>
+													<feBlend
+														mode="normal"
+														in2="effect1_dropShadow_1_11909"
+														result="effect2_dropShadow_1_11909"
+													/>
+													<feBlend
+														mode="normal"
+														in="SourceGraphic"
+														in2="effect2_dropShadow_1_11909"
+														result="shape"
+													/>
+												</filter>
+											</defs>
+										</svg>
+									</button>
+								</div>
+							</div>
 						</div>
 					</div>
-					<div class="flex flex-col md:flex-row gap-8">
-						<figure
-							class="flex flex-col p-8 bg-white rounded-2xl shadow-xl"
-						>
-							<blockquote class="max-w-2xl mx-auto mb-4 lg:mb-8">
-								<p class="my-4 font-normal text-xl">
-									Lacus vestibulum ultricies mi risus, duis non,
-									volutpat nullam non. Magna congue nisi maecenas elit
-									aliquet eu sed consectetur. Vitae quis cras vitae
-									praesent morbi adipiscing purus consectetur mi.
-								</p>
-							</blockquote>
-							<figcaption class="flex items-center">
-								<img
-									class="rounded-full w-9 h-9"
-									src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png"
-									alt="profile picture"
-								/>
-								<div class="space-y-0.5 font-medium ms-3">
-									<p>Hellen Jummy</p>
-									<div class="text-sm text-gray-500">
-										Developer at Open AI
-									</div>
+
+					<div class="embla__cards__middle overflow-x-auto py-8">
+						<div class="embla__viewport">
+							<div class="embla__container flex gap-4">
+								<div class="embla__slide min-w-[20rem]">
+									<figure
+										class="flex flex-col p-8 rounded-2xl shadow-xl"
+									>
+										<blockquote class="mb-4 lg:mb-8">
+											<p class="my-4 font-normal md:text-xl">
+												Lacus vestibulum ultricies mi risus, duis
+												non, volutpat nullam non. Magna congue nisi
+												maecenas elit aliquet eu sed consectetur.
+												Vitae quis cras vitae praesent morbi
+												adipiscing purus consectetur mi.
+											</p>
+										</blockquote>
+										<figcaption class="flex items-center">
+											<img
+												class="rounded-full w-13 h-13"
+												src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png"
+												alt="profile picture"
+											/>
+											<div class="space-y-0.5 font-medium ms-3">
+												<p>Hellen Jummy</p>
+												<div class="text-sm text-gray-500">
+													Developer at Open AI
+												</div>
+											</div>
+										</figcaption>
+									</figure>
 								</div>
-							</figcaption>
-						</figure>
-						<figure
-							class="flex flex-col p-8 bg-white rounded-2xl shadow-xl"
-						>
-							<blockquote class="max-w-2xl mx-auto mb-4 lg:mb-8">
-								<p class="my-4 font-normal text-xl">
-									Odio rhoncus ornare ut quam. Molestie vel duis quis
-									scelerisque ut id. In tortor turpis viverra sagittis
-									ultrices nisi, nec tortor. Vestibulum, ultrices
-									ultricies neque, hac ultricies dolor.
-								</p>
-							</blockquote>
-							<figcaption class="flex items-center">
-								<img
-									class="rounded-full w-9 h-9"
-									src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png"
-									alt="profile picture"
-								/>
-								<div class="space-y-0.5 font-medium ms-3">
-									<p>Hellen Jummy</p>
-									<div class="text-sm text-gray-500">
-										Developer at Open AI
-									</div>
+								<div class="min-w-[20rem] embla__slide">
+									<figure
+										class="w-full flex flex-col p-8 bg-white rounded-2xl shadow-xl"
+									>
+										<blockquote class="mb-4 lg:mb-8">
+											<p class="my-4 font-normal md:text-xl">
+												Lacus vestibulum ultricies mi risus, duis
+												non, volutpat nullam non. Magna congue nisi
+												maecenas elit aliquet eu sed consectetur.
+												Vitae quis cras vitae praesent morbi
+												adipiscing purus consectetur mi.
+											</p>
+										</blockquote>
+										<figcaption class="flex items-center">
+											<img
+												class="rounded-full w-13 h-13"
+												src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png"
+												alt="profile picture"
+											/>
+											<div class="space-y-0.5 font-medium ms-3">
+												<p>Hellen Jummy</p>
+												<div class="text-sm text-gray-500">
+													Developer at Open AI
+												</div>
+											</div>
+										</figcaption>
+									</figure>
 								</div>
-							</figcaption>
-						</figure>
-						<figure
-							class="flex flex-col p-8 bg-white rounded-2xl shadow-xl"
-						>
-							<blockquote class="max-w-2xl mx-auto mb-4 lg:mb-8">
-								<p class="my-4 font-normal text-xl">
-									Sagittis nunc egestas leo et malesuada urna risus.
-									Morbi proin et cras aliquam. Diam tellus, amet, hac
-									imperdiet. Tellus mi volutpat tellus, congue
-									malesuada sit nisl <br />
-									donec a.
-								</p>
-							</blockquote>
-							<figcaption class="flex items-center">
-								<img
-									class="rounded-full w-9 h-9"
-									src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png"
-									alt="profile picture"
-								/>
-								<div class="space-y-0.5 font-medium ms-3">
-									<p>Hellen Jummy</p>
-									<div class="text-sm text-gray-500">
-										Developer at Open AI
-									</div>
+								<div class="min-w-[20rem] embla__slide">
+									<figure
+										class="w-full flex flex-col p-8 bg-white rounded-2xl shadow-xl"
+									>
+										<blockquote class="mb-4 lg:mb-8">
+											<p class="my-4 font-normal md:text-xl">
+												Lacus vestibulum ultricies mi risus, duis
+												non, volutpat nullam non. Magna congue nisi
+												maecenas elit aliquet eu sed consectetur.
+												Vitae quis cras vitae praesent morbi
+												adipiscing purus consectetur mi.
+											</p>
+										</blockquote>
+										<figcaption class="flex items-center">
+											<img
+												class="rounded-full w-13 h-13"
+												src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png"
+												alt="profile picture"
+											/>
+											<div class="space-y-0.5 font-medium ms-3">
+												<p>Hellen Jummy</p>
+												<div class="text-sm text-gray-500">
+													Developer at Open AI
+												</div>
+											</div>
+										</figcaption>
+									</figure>
 								</div>
-							</figcaption>
-						</figure>
-						<figure
-							class="flex flex-col p-8 bg-white rounded-2xl shadow-xl"
-						>
-							<blockquote class="max-w-2xl mx-auto mb-4 lg:mb-8">
-								<p class="my-4 font-normal text-xl">
-									Lacus vestibulum ultricies mi risus, duis non,
-									volutpat nullam non. Magna congue nisi maecenas elit
-									aliquet eu sed consectetur. Vitae quis cras vitae
-									praesent morbi adipiscing purus consectetur mi.
-								</p>
-							</blockquote>
-							<figcaption class="flex items-center">
-								<img
-									class="rounded-full w-9 h-9"
-									src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png"
-									alt="profile picture"
-								/>
-								<div class="space-y-0.5 font-medium ms-3">
-									<p>Hellen Jummy</p>
-									<div class="text-sm text-gray-500">
-										Developer at Open AI
-									</div>
+								<div class="min-w-[20rem] md:max-w-auto embla__slide">
+									<figure
+										class="w-full flex flex-col p-8 bg-white rounded-2xl shadow-xl"
+									>
+										<blockquote class="mb-4 lg:mb-8">
+											<p class="my-4 font-normal md:text-xl">
+												Lacus vestibulum ultricies mi risus, duis
+												non, volutpat nullam non. Magna congue nisi
+												maecenas elit aliquet eu sed consectetur.
+												Vitae quis cras vitae praesent morbi
+												adipiscing purus consectetur mi.
+											</p>
+										</blockquote>
+										<figcaption class="flex items-center">
+											<img
+												class="rounded-full w-13 h-13"
+												src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png"
+												alt="profile picture"
+											/>
+											<div class="space-y-0.5 font-medium ms-3">
+												<p>Hellen Jummy</p>
+												<div class="text-sm text-gray-500">
+													Developer at Open AI
+												</div>
+											</div>
+										</figcaption>
+									</figure>
 								</div>
-							</figcaption>
-						</figure>
+								<div class="embla__slide min-w-[20rem]">
+									<figure
+										class="flex flex-col p-8 rounded-2xl shadow-xl"
+									>
+										<blockquote class="mb-4 lg:mb-8">
+											<p class="my-4 font-normal md:text-xl">
+												Lacus vestibulum ultricies mi risus, duis
+												non, volutpat nullam non. Magna congue nisi
+												maecenas elit aliquet eu sed consectetur.
+												Vitae quis cras vitae praesent morbi
+												adipiscing purus consectetur mi.
+											</p>
+										</blockquote>
+										<figcaption class="flex items-center">
+											<img
+												class="rounded-full w-13 h-13"
+												src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png"
+												alt="profile picture"
+											/>
+											<div class="space-y-0.5 font-medium ms-3">
+												<p>Hellen Jummy</p>
+												<div class="text-sm text-gray-500">
+													Developer at Open AI
+												</div>
+											</div>
+										</figcaption>
+									</figure>
+								</div>
+								<div class="min-w-[20rem] embla__slide">
+									<figure
+										class="w-full flex flex-col p-8 bg-white rounded-2xl shadow-xl"
+									>
+										<blockquote class="mb-4 lg:mb-8">
+											<p class="my-4 font-normal md:text-xl">
+												Lacus vestibulum ultricies mi risus, duis
+												non, volutpat nullam non. Magna congue nisi
+												maecenas elit aliquet eu sed consectetur.
+												Vitae quis cras vitae praesent morbi
+												adipiscing purus consectetur mi.
+											</p>
+										</blockquote>
+										<figcaption class="flex items-center">
+											<img
+												class="rounded-full w-13 h-13"
+												src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png"
+												alt="profile picture"
+											/>
+											<div class="space-y-0.5 font-medium ms-3">
+												<p>Hellen Jummy</p>
+												<div class="text-sm text-gray-500">
+													Developer at Open AI
+												</div>
+											</div>
+										</figcaption>
+									</figure>
+								</div>
+								<div class="min-w-[20rem] embla__slide">
+									<figure
+										class="w-full flex flex-col p-8 bg-white rounded-2xl shadow-xl"
+									>
+										<blockquote class="mb-4 lg:mb-8">
+											<p class="my-4 font-normal md:text-xl">
+												Lacus vestibulum ultricies mi risus, duis
+												non, volutpat nullam non. Magna congue nisi
+												maecenas elit aliquet eu sed consectetur.
+												Vitae quis cras vitae praesent morbi
+												adipiscing purus consectetur mi.
+											</p>
+										</blockquote>
+										<figcaption class="flex items-center">
+											<img
+												class="rounded-full w-13 h-13"
+												src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png"
+												alt="profile picture"
+											/>
+											<div class="space-y-0.5 font-medium ms-3">
+												<p>Hellen Jummy</p>
+												<div class="text-sm text-gray-500">
+													Developer at Open AI
+												</div>
+											</div>
+										</figcaption>
+									</figure>
+								</div>
+								<div class="min-w-[20rem] embla__slide">
+									<figure
+										class="w-full flex flex-col p-8 bg-white rounded-2xl shadow-xl"
+									>
+										<blockquote class="mb-4 lg:mb-8">
+											<p class="my-4 font-normal md:text-xl">
+												Lacus vestibulum ultricies mi risus, duis
+												non, volutpat nullam non. Magna congue nisi
+												maecenas elit aliquet eu sed consectetur.
+												Vitae quis cras vitae praesent morbi
+												adipiscing purus consectetur mi.
+											</p>
+										</blockquote>
+										<figcaption class="flex items-center">
+											<img
+												class="rounded-full w-13 h-13"
+												src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png"
+												alt="profile picture"
+											/>
+											<div class="space-y-0.5 font-medium ms-3">
+												<p>Hellen Jummy</p>
+												<div class="text-sm text-gray-500">
+													Developer at Open AI
+												</div>
+											</div>
+										</figcaption>
+									</figure>
+								</div>
+								<div class="min-w-[20rem] embla__slide">
+									<figure
+										class="w-full flex flex-col p-8 bg-white rounded-2xl shadow-xl"
+									>
+										<blockquote class="mb-4 lg:mb-8">
+											<p class="my-4 font-normal md:text-xl">
+												Lacus vestibulum ultricies mi risus, duis
+												non, volutpat nullam non. Magna congue nisi
+												maecenas elit aliquet eu sed consectetur.
+												Vitae quis cras vitae praesent morbi
+												adipiscing purus consectetur mi.
+											</p>
+										</blockquote>
+										<figcaption class="flex items-center">
+											<img
+												class="rounded-full w-13 h-13"
+												src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png"
+												alt="profile picture"
+											/>
+											<div class="space-y-0.5 font-medium ms-3">
+												<p>Hellen Jummy</p>
+												<div class="text-sm text-gray-500">
+													Developer at Open AI
+												</div>
+											</div>
+										</figcaption>
+									</figure>
+								</div>
+								<div class="min-w-[20rem] embla__slide">
+									<figure
+										class="w-full flex flex-col p-8 bg-white rounded-2xl shadow-xl"
+									>
+										<blockquote class="mb-4 lg:mb-8">
+											<p class="my-4 font-normal md:text-xl">
+												Lacus vestibulum ultricies mi risus, duis
+												non, volutpat nullam non. Magna congue nisi
+												maecenas elit aliquet eu sed consectetur.
+												Vitae quis cras vitae praesent morbi
+												adipiscing purus consectetur mi.
+											</p>
+										</blockquote>
+										<figcaption class="flex items-center">
+											<img
+												class="rounded-full w-13 h-13"
+												src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png"
+												alt="profile picture"
+											/>
+											<div class="space-y-0.5 font-medium ms-3">
+												<p>Hellen Jummy</p>
+												<div class="text-sm text-gray-500">
+													Developer at Open AI
+												</div>
+											</div>
+										</figcaption>
+									</figure>
+								</div>
+								<div class="min-w-[20rem] embla__slide">
+									<figure
+										class="w-full flex flex-col p-8 bg-white rounded-2xl shadow-xl"
+									>
+										<blockquote class="mb-4 lg:mb-8">
+											<p class="my-4 font-normal md:text-xl">
+												Lacus vestibulum ultricies mi risus, duis
+												non, volutpat nullam non. Magna congue nisi
+												maecenas elit aliquet eu sed consectetur.
+												Vitae quis cras vitae praesent morbi
+												adipiscing purus consectetur mi.
+											</p>
+										</blockquote>
+										<figcaption class="flex items-center">
+											<img
+												class="rounded-full w-13 h-13"
+												src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png"
+												alt="profile picture"
+											/>
+											<div class="space-y-0.5 font-medium ms-3">
+												<p>Hellen Jummy</p>
+												<div class="text-sm text-gray-500">
+													Developer at Open AI
+												</div>
+											</div>
+										</figcaption>
+									</figure>
+								</div>
+								<div class="min-w-[20rem] embla__slide">
+									<figure
+										class="w-full flex flex-col p-8 bg-white rounded-2xl shadow-xl"
+									>
+										<blockquote class="mb-4 lg:mb-8">
+											<p class="my-4 font-normal md:text-xl">
+												Lacus vestibulum ultricies mi risus, duis
+												non, volutpat nullam non. Magna congue nisi
+												maecenas elit aliquet eu sed consectetur.
+												Vitae quis cras vitae praesent morbi
+												adipiscing purus consectetur mi.
+											</p>
+										</blockquote>
+										<figcaption class="flex items-center">
+											<img
+												class="rounded-full w-13 h-13"
+												src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png"
+												alt="profile picture"
+											/>
+											<div class="space-y-0.5 font-medium ms-3">
+												<p>Hellen Jummy</p>
+												<div class="text-sm text-gray-500">
+													Developer at Open AI
+												</div>
+											</div>
+										</figcaption>
+									</figure>
+								</div>
+							</div>
+						</div>
 					</div>
 				</section>
 
 				<section
-					class="w-full my-38 bg-white flex flex-col md:flex-row items-center gap-48"
+					class="w-full md:my-38 bg-white flex flex-col md:flex-row items-center gap-4 md:gap-48"
 				>
 					<!-- Center Section -->
 					<div class="flex flex-col gap-8 my-8 w-full">
-						<div>
+						<div class="w-full">
 							<h1
-								class="text-[2.5rem] md:text-7xl font-extrabold md:leading-20"
+								class="text-2xl font-extrabold md:text-7xl md:leading-20"
 							>
 								All the cool features
 							</h1>
 						</div>
 
 						<!-- Description -->
-						<div class="text-2xl font-normal">
-							<p class="leading-10">
+						<div class="md:text-2xl font-normal">
+							<p class="md:leading-10">
 								Mauris consequat, cursus pharetra et, habitasse rhoncus
 								quis odio <br />
 								ac. In et dolor eu donec maecenas nulla. Cum sed orci,
@@ -845,7 +1227,7 @@
 							<!-- Buttons -->
 							<a
 								href="#"
-								class="bg-white flex items-center gap-5 text-blue-600 font-medium text-2xl py-4 rounded-lg transition-all focus:ring-2 focus:ring-blue-400"
+								class="bg-white flex items-center gap-5 text-blue-600 font-medium md:text-2xl py-4 rounded-lg transition-all focus:ring-2 focus:ring-blue-400"
 							>
 								View all the features
 
@@ -866,23 +1248,14 @@
 						</div>
 					</div>
 
-					<div class="flex items-center w-full me-32">
-						<!-- <div class="absolute">
-							<svg
-								width="704"
-								height="704"
-								viewBox="0 0 534 522"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path
-									fill-rule="evenodd"
-									clip-rule="evenodd"
-									d="M26.9327 166.66C0.640848 218.766 -10.9325 292.146 13.1786 362.559C37.2897 432.971 98.8608 475.299 184.868 503.292C346.248 555.817 499.386 487.929 523.265 420.686C545.57 357.878 534.304 314.119 478.269 257.38C422.234 200.641 383.309 160.339 368.651 103.023C354.21 46.5579 335.203 12.8386 291.348 4.0236C243.915 -5.51043 194.031 1.28871 147.22 30.985C99.4641 61.281 51.3916 118.187 26.9327 166.66Z"
-									fill="#FB923C"
-								/>
-							</svg>
-						</div> -->
+					<div class="flex items-center w-full md:me-32">
+						<div class="absolute">
+							<img
+								src="/Blob_Second.svg"
+								class="h-[28rem] w-[28rem] md:w-[40rem] md:h-[40rem]"
+								alt=""
+							/>
+						</div>
 
 						<div class="relative flex flex-col w-full gap-6">
 							<div class="flex ms-6 items-end">
@@ -897,7 +1270,9 @@
 											>
 										</blockquote>
 										<figcaption class="flex gap-3 flex-col">
-											<div class="space-y-0.5 text-xl font-medium">
+											<div
+												class="space-y-0.5 md:text-xl font-medium"
+											>
 												<p>
 													Design for how <br />
 													people think
@@ -905,7 +1280,7 @@
 											</div>
 											<div>
 												<p
-													class="self-start font-normal text-gray-600 leading-6"
+													class="self-start font-normal text-gray-600 md:leading-6"
 												>
 													Aliquam ut euismod <br />
 													condimentum elementum ultricies volutpat
@@ -954,62 +1329,50 @@
 
 			<!-- Last Yellow section -->
 			<section class="mt-32 bg-yellow-400 w-full">
-				<div
-					class="w-full py-24 flex flex-col md:flex-row justify-center items-center"
-				>
-					<div class="w-full">
-						<img
-							src="/join_one.svg"
-							alt="Join a world of learning (image one)"
-						/>
-					</div>
+				<div class="p-4 md:py-24 flex flex-col md:flex-row">
+					<div class="bg-[url(/join_one.svg)]"></div>
 					<div class="w-full flex items-center flex-col gap-8">
 						<div>
-							<h3 class="text-[56px] text-center font-extrabold">
+							<h3
+								class="text-2xl md:text-[56px] text-center font-extrabold"
+							>
 								Join a world of learning
 							</h3>
 						</div>
-						<div class="text-xl font-normal text-center">
-							<p class="leading-14">
+						<div class="md:text-xl font-normal text-center">
+							<p class="px-4 md:px-0 md:leading-14">
 								Malesuada ut aliquam at ac est nisi, interdum etiam
-								dignissim. <br />
-								Risus elit et fringilla habitant ut facilisi.
+								dignissim. Risus elit et fringilla habitant ut facilisi.
 							</p>
 						</div>
 						<div class="mt-4">
 							<a
 								href="#"
-								class="inline-block text-center bg-orange-600 text-white font-bold text-2xl px-10 py-4 rounded-lg transition-all focus:ring-2 focus:ring-orange-400"
+								class="inline-block text-center bg-orange-600 text-white font-bold text-base md:text-2xl px-10 py-4 rounded-lg transition-all focus:ring-2 focus:ring-orange-400"
 							>
 								Sign Up Now
 							</a>
 						</div>
 					</div>
-					<div class="w-full">
-						<img
-							src="/join_two.svg"
-							class="w-full"
-							alt="Join a world of learning (image two)"
-						/>
-					</div>
+					<div class="bg-[url(/join_two.svg)]"></div>
 				</div>
 			</section>
 
 			<!-- Penultimate section -->
-			<section class="bg-[#EA580C] p-24 w-full">
+			<section class="bg-[#EA580C] py-16 px-4 md:p-24 w-full">
 				<div class="flex justify-center items-center">
 					<div class="w-full flex items-center flex-col gap-6">
 						<div>
 							<h3
-								class="leading-16 text-[56px] font-extrabold text-white text-center"
+								class="md:leading-16 md:text-[56px] text-[2rem] font-extrabold text-white text-center"
 							>
 								Ready for your next project?
 							</h3>
 						</div>
 						<div
-							class="text-2xl font-light text-white text-[2rem] text-center"
+							class="md:text-2xl text-lg font-normal text-white text-center"
 						>
-							<p class="leading-10">
+							<p class="md:leading-10">
 								Sit elit feugiat turpis sed integer integer accumsan
 								turpis.
 							</p>
@@ -1330,4 +1693,5 @@
 			</div>
 		</main>
 	</body>
+	<script type="module" src="./src/main.js"></script>
 </html>
