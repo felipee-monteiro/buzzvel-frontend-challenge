@@ -17,8 +17,7 @@ RUN apt-get update -q -y \
 
 USER node
 
-RUN npx is-my-node-vulnerable \
-    && npm ic \
+RUN npm ic \
     && npm run build 
 
 EXPOSE 4173
