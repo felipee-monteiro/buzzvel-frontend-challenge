@@ -12,7 +12,7 @@ This repository contains the source-code of the test and demonstrates how to run
 
 - Git
 - Node.js (or **nvm** installed)
-- Docker/Docker Compose  (If use it)
+- Docker/Docker Compose (If use it)
 
 ---
 
@@ -37,21 +37,25 @@ source ~/.nvm/nvm.sh
 ```bash
 nvm install
 ```
+
 #### Use the Node.js version specified in .nvmrc:
 
 ```bash
 nvm use
 ```
+
 #### Install dependencies:
 
 ```bash
 npm install
 ```
+
 #### Build the appilcation:
 
 ```bash
 npm run build
 ```
+
 #### Start the application:
 
 ```bash
@@ -71,11 +75,12 @@ Quick and without extra files:
 ```bash
 docker build -t buzzvel-frontend-challenge-felipe-monteiro .
 ```
+
 #### Run the container in detached mode
 
 ```bash
 docker run -d \
-  --name buzzvel-frontend-challenge-felipe-monteiro \
+  --name buzzvel-frontend-challenge-felipe-monteiro-container \
   -p 4173:4173 \
   buzzvel-frontend-challenge-felipe-monteiro
 ```
@@ -91,6 +96,7 @@ docker logs -f buzzvel-frontend-challenge-felipe-monteiro
 ```bash
 docker stop buzzvel-frontend-challenge-felipe-monteiro
 ```
+
 #### Remove:
 
 ```bash
