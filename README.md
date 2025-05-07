@@ -88,19 +88,19 @@ docker run -d \
 Real-time logs:
 
 ```bash
-docker logs -f buzzvel-frontend-challenge-felipe-monteiro
+docker logs -f buzzvel-frontend-challenge-felipe-monteiro-container
 ```
 
 #### Stop:
 
 ```bash
-docker stop buzzvel-frontend-challenge-felipe-monteiro
+docker stop buzzvel-frontend-challenge-felipe-monteiro-container
 ```
 
 #### Remove:
 
 ```bash
-docker rm buzzvel-frontend-challenge-felipe-monteiro
+docker rm buzzvel-frontend-challenge-felipe-monteiro-container
 ```
 
 ---
