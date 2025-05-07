@@ -25,8 +25,6 @@ EmblaCarousel(viewportNode, {
 
 const emblaNodeCard = document.querySelector(".embla__cards__middle");
 
-emblaNodeCard.querySelector(".embla__viewport");
-
 const prevBtnNode = document.querySelector(".embla__button--prev");
 const nextBtnNode = document.querySelector(".embla__button--next");
 const viewportNodeCard = emblaNodeCard.querySelector(".embla__viewport");
