@@ -24,6 +24,6 @@
 		"lightningcss": "^1.29.3",
 		"motion": "^12.10.0",
 		"tailwindcss": "^4.1.5",
-		"vite": "^6.3.4"
+		"vite": "^6.4.1"
 	}
 }
